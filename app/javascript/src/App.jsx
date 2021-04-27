@@ -1,19 +1,22 @@
 import React from "react";
-import { Route, Switch, BrowserRouter as Router } from "react-router-dom";
+// import { Route, Switch, BrowserRouter as Router } from "react-router-dom";
+
 const App = () => {
-  useEffect(() => {
-    /*eslint no-undef: "off"*/
-    initializeLogger();
-    logger.info("Log from js-logger");
-  }, []);
+  // useEffect(() => {
+  //   /*eslint no-undef: "off"*/
+  //   initializeLogger();
+  //   logger.info("Log from js-logger");
+  // }, []);
   
   return (
-    <Router>
-      <Switch>
-        <Route exact path="/" render={() => <div>Home</div>} />
-        <Route exact path="/about" render={() => <div>About</div>} />
-      </Switch>
-    </Router>
+    // <Router>
+    //   <Switch>
+    //     <Route exact path="/" render={() => <div>Home</div>} />
+    //     <Route exact path="/about" render={() => <div>About</div>} />
+    //   </Switch>
+    // </Router>
+
+    <h1>This is App.jsx</h1>
   );
 };
 
