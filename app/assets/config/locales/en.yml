@@ -1,4 +1,2 @@
-en:
-  task:
-    slug:
-      immutable: "is immutable!"
+"Task was successfully created!";
+"is immutable!";

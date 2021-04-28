@@ -3,8 +3,10 @@ import { isNil, isEmpty, either } from "ramda";
 
 import Container from "components/Container";
 import ListTasks from "components/Tasks/ListTasks";
+import Table from "components/Tasks/Table/index";
 import PageLoader from "components/PageLoader";
 import tasksApi from "apis/tasks";
+import { setAuthHeaders } from "apis/axios";
 
 const Dashboard = ({ history }) => {
   const [tasks, setTasks] = useState([]);
