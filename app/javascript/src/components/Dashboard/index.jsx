@@ -8,7 +8,7 @@ import tasksApi from "apis/tasks";
 
 const Dashboard = ({ history }) => {
   const [tasks, setTasks] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   const fetchTasks = async () => {
     try {
