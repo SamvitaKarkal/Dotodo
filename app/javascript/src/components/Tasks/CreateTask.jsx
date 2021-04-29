@@ -7,6 +7,7 @@ import tasksApi from "apis/tasks";
 const CreateTask = ({ history }) => {
   const [title, setTitle] = useState("");
   const [loading, setLoading] = useState(false);
+  const [pageLoading, setPageLoading] = useState(true);
 
   const handleSubmit = async event => {
     event.preventDefault();
@@ -19,6 +20,10 @@ const CreateTask = ({ history }) => {
       setLoading(false);
     }
   };
+
+  if (pageLoading) {
+    return <PageLoader />;
+  }
 
   return (
     <Container>

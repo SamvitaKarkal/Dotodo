@@ -3,8 +3,9 @@ Rails.application.routes.draw do
 
   resources :tasks, only: [:index], param: :slug
   resources :tasks, only: [:index, :create]
+  resources :tasks, except: %i[new edit], param: :slug
+  #except used because except new and edit all other actions need to be run
 
-  
   root "home#index"
   get '*path', to: 'home#index', via: :all
 end
