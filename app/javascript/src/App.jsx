@@ -1,35 +1,45 @@
-import React from "react";
-// import { Route, Switch, BrowserRouter as Router } from "react-router-dom";
-import Dashboard from "components/Dashboard";
+import React, { useEffect, useState } from "react";
 import { Route, Switch, BrowserRouter as Router } from "react-router-dom";
+import { either, isEmpty, isNil } from "ramda";
+import { ToastContainer } from "react-toastify";
 
-// const App = () => {
-//   // useEffect(() => {
-//   //   /*eslint no-undef: "off"*/
-//   //   initializeLogger();
-//   //   logger.info("Log from js-logger");
-//   // }, []);
-  
-//   return (
-//     // <Router>
-//     //   <Switch>
-//     //     <Route exact path="/" render={() => <div>Home</div>} />
-//     //     <Route exact path="/about" render={() => <div>About</div>} />
-//     //   </Switch>
-//     // </Router>
-
-//     <h1>This is App.jsx</h1>
-//   );
-// };
+import Dashboard from "components/Dashboard";
+import CreateTask from "components/Tasks/CreateTask";
+import ShowTask from "components/Tasks/ShowTask";
+//import EditTask from "components/Tasks/EditTask";
+import PageLoader from "components/PageLoader";
+// import Login from "components/Authentication/Login";
+// import SignUp from "components/Authentication/SignUp";
+import { registerIntercepts, setAuthHeaders } from "apis/axios";
+import { initializeLogger } from "common/logger";
 
 const App = () => {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    initializeLogger();
+    registerIntercepts();
+    setAuthHeaders(setLoading);
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="h-screen">
+        <PageLoader />
+      </div>
+    );
+  }
+
   return (
     <Router>
+      <ToastContainer />
       <Switch>
-        {/* // <--- rest of the code if any -----> */}
+        <Route exact path="/tasks/:slug/show" component={ShowTask} />
+        <Route exact path="/tasks/create" component={CreateTask} />
         <Route exact path="/dashboard" component={Dashboard} />
       </Switch>
     </Router>
   );
 };
+
 export default App;
