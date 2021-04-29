@@ -19,4 +19,5 @@ ActiveRecord::Schema.define(version: 2021_04_28_123220) do
     t.string "slug", null: false
     t.index ["slug"], name: "index_tasks_on_slug", unique: true
   end
+
 end
