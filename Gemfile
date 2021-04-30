@@ -54,3 +54,5 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # Adding React-rails
 gem 'react-rails'
+
+gem 'wdm', '>= 0.1.0'

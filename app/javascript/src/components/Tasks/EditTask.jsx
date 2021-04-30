@@ -5,7 +5,6 @@ import Container from "components/Container";
 import TaskForm from "./Form/TaskForm";
 import tasksApi from "apis/tasks";
 import PageLoader from "components/PageLoader";
-import Toastr from "components/Common/Toastr";
 
 const EditTask = ({ history }) => {
   const [title, setTitle] = useState("");
@@ -22,7 +21,6 @@ const EditTask = ({ history }) => {
         payload: { task: { title, user_id: userId } },
       });
       setLoading(false);
-      Toastr.success("Successfully updated task.");
       history.push("/dashboard");
     } catch (error) {
       setLoading(false);
@@ -30,21 +28,21 @@ const EditTask = ({ history }) => {
     }
   };
 
-  const fetchTaskDetails = async () => {
-    try {
-      const response = await tasksApi.show(slug);
-      setTitle(response.data.task.title);
-      setUserId(response.data.task.user_id);
-    } catch (error) {
-      logger.error(error);
-    } finally {
-      setPageLoading(false);
-    }
-  };
+  // const fetchTaskDetails = async () => {
+  //   try {
+  //     const response = await tasksApi.show(slug);
+  //     setTitle(response.data.task.title);
+  //     setUserId(response.data.task.user_id);
+  //   } catch (error) {
+  //     logger.error(error);
+  //   } finally {
+  //     setPageLoading(false);
+  //   }
+  // };
 
-  useEffect(() => {
-    fetchTaskDetails();
-  }, []);
+  // useEffect(() => {
+  //   fetchTaskDetails();
+  // }, []);
 
   if (pageLoading) {
     return (

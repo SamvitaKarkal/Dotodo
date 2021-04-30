@@ -14,7 +14,7 @@ const Dashboard = ({ history }) => {
 
   const fetchTasks = async () => {
     try {
-      // setAuthHeaders();
+      setAuthHeaders();
       const response = await tasksApi.list();
       setTasks(response.data.tasks);
       setLoading(false);
