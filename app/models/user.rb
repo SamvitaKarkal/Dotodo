@@ -1,5 +1,7 @@
 class User < ApplicationRecord
-    validates :name, presence: true, length: {maximum: 35}
+    VALID_EMAIL_REGEX = /\A([\w+\-].?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i.freeze
+
+    
     # has_many :tasks, dependent: :destroy
     has_many :tasks, dependent: :destroy, foreign_key: :user_id
     #dependent : :destroy destroys all tasks assigned to user if user destroyed
@@ -17,7 +19,7 @@ class User < ApplicationRecord
 
     private
 
-    def to_lower_case
+    def to_lowercase
       email.downcase!
     end
 

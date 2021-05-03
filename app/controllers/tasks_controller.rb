@@ -10,9 +10,9 @@ class TasksController < ApplicationController
     @task = Task.new(task_params)
     # .merge(creator_id: @current_user.id))
     if @task.save
-      render status: :ok, json: { notice: t('Successfully created') }
+      render status: :ok, json: { notice: t('Successfully created', entity: 'Task') }
     else
-      errors = @task.errors.full_messages
+      errors = @task.errors.full_messages.to_sentence
       render status: :unprocessable_entity, json: { errors: errors  }
     end
   rescue ActiveRecord::RecordNotUnique => e
