@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
+import { initializeLogger } from "common/logger";
+import { registerIntercepts, setAuthHeaders } from "apis/axios";
 import { Route, Switch, BrowserRouter as Router } from "react-router-dom";
-import { either, isEmpty, isNil } from "ramda";
 import { ToastContainer } from "react-toastify";
 
 import Dashboard from "components/Dashboard";
@@ -10,8 +11,6 @@ import EditTask from "components/Tasks/EditTask";
 import PageLoader from "components/PageLoader";
 // import Login from "components/Authentication/Login";
 // import SignUp from "components/Authentication/SignUp";
-import { registerIntercepts, setAuthHeaders } from "apis/axios";
-import { initializeLogger } from "common/logger";
 
 const App = () => {
   const [loading, setLoading] = useState(true);
