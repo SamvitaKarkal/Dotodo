@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
+import { initializeLogger } from "common/logger";
+import { registerIntercepts, setAuthHeaders } from "apis/axios";
 import { Route, Switch, BrowserRouter as Router } from "react-router-dom";
-import { either, isEmpty, isNil } from "ramda";
 import { ToastContainer } from "react-toastify";
 
 import Dashboard from "components/Dashboard";
@@ -9,9 +10,7 @@ import ShowTask from "components/Tasks/ShowTask";
 import EditTask from "components/Tasks/EditTask";
 import PageLoader from "components/PageLoader";
 // import Login from "components/Authentication/Login";
-// import SignUp from "components/Authentication/SignUp";
-import { registerIntercepts, setAuthHeaders } from "apis/axios";
-import { initializeLogger } from "common/logger";
+import Signup from "components/Authentication/Signup";
 
 const App = () => {
   const [loading, setLoading] = useState(true);
@@ -38,6 +37,7 @@ const App = () => {
         <Route exact path="/tasks/:slug/edit" component={EditTask} />
         <Route exact path="/tasks/:slug/show" component={ShowTask} />
         <Route exact path="/dashboard" component={Dashboard} />
+        <Route exact path="/signup" component={Signup} />
       </Switch>
     </Router>
   );
