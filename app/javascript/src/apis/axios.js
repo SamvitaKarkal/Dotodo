@@ -54,3 +54,9 @@ export const registerIntercepts = () => {
     handleErrorResponse(error)
   );
 };
+
+// functn to clear default Axios headers when logged out.
+export const resetAuthTokens = () => {
+  delete axios.defaults.headers["X-Auth-Email"];
+  delete axios.defaults.headers["X-Auth-Token"];
+};

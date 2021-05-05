@@ -8,8 +8,7 @@ class TasksController < ApplicationController
   end
 
   def create
-    @task = Task.new(task_params)
-    # .merge(creator_id: @current_user.id))
+    @task = Task.new(task_params.merge(creator_id: @current_user.id))
     if @task.save
       render status: :ok, json: { notice: t('Successfully created', entity: 'Task') }
     else
@@ -47,7 +46,8 @@ class TasksController < ApplicationController
   private
   
   def task_params
-    params.require(:task).permit(:title, :user_id)
+    params.require(:task).permit(:title)
+    #, :user_id)
     #not marking user_id safe but whitelisting user_id attribute
   end
 
