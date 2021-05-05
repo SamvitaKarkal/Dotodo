@@ -58,3 +58,6 @@ gem 'wdm', '>= 0.1.0'
 
 #gem for encrypting passwords
 gem 'bcrypt', '~> 3.1.13'
+
+#gem for authorization
+gem 'pundit'

@@ -12,6 +12,14 @@ const ShowTask = () => {
   const [pageLoading, setPageLoading] = useState(true);
   // const [taskCreator, setTaskCreator] = useState("");
 
+  const updateTask = () => {
+    history.push(`/tasks/${taskDetails.slug}/edit`);
+  };
+  // works similar to
+  //   unless TaskPolicy.new(current_user, @task).show?
+  //   raise Pundit::NotAuthorizedError, "not allowed to show? this #{@task.inspect}"
+  //   end
+
   const fetchTaskDetails = async () => {
     try {
       const response = await tasksApi.show(slug);
