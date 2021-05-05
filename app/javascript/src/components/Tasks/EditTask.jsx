@@ -23,7 +23,7 @@ const EditTask = ({ history }) => {
         slug,
         payload: { task: { title, user_id: userId } },
       });
-      history.push("/dashboard");
+      history.push("/");
     } catch (error) {
       logger.error(error);
     } finally {
