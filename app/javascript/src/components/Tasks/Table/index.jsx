@@ -2,7 +2,13 @@ import React from "react";
 import TableHeader from "./TableHeader";
 import TableRow from "./TableRow";
 
-const Table = ({ data, destroyTask, updateTask, showTask }) => {
+const Table = ({
+  // type = "pending",
+  data,
+  destroyTask,
+  updateTask,
+  showTask,
+}) => {
   return (
     <div className="flex flex-col">
       <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">

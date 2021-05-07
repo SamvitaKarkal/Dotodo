@@ -1,14 +1,13 @@
 class User < ApplicationRecord
     VALID_EMAIL_REGEX = /\A([\w+\-].?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i.freeze
 
-    
-    # has_many :tasks, dependent: :destroy
+    has_many :comments, dependent: :destroy
     has_many :tasks, dependent: :destroy, foreign_key: :user_id
     has_secure_password
     has_secure_token :authentication_token
     #dependent : :destroy destroys all tasks assigned to user if user destroyed
     
-
+    validates :name, presence: true, length: { maximum: 35 }
     validates :email, presence: true,
                       uniqueness: true,
                       length: { maximum: 50},
@@ -92,4 +91,19 @@ class User < ApplicationRecord
     #                     second_user.authentication_token
     # end
 
+    # def test_valid_comment_should_be_saved
+    #   assert_difference 'Comment.count' do
+    #     @comment.save
+    #   end
+    # end
+
+    # def test_comment_should_not_be_valid_without_user
+    #   @comment.user = nil
+    #   assert @comment.invalid?
+    # end
+
+    # def test_comment_should_not_be_valid_without_task
+    #   @comment.task = nil
+    #   assert @comment.invalid?
+    # end
 end

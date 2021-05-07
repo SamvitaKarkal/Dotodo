@@ -1,4 +1,6 @@
 class TasksController < ApplicationController
+  after_action :verify_authorized, except: :index
+  after_action :verify_policy_scoped, only: :index
   before_action :authenticate_user_using_x_auth_token
   #, except: [:new, :edit]
   before_action :load_task, only: %i[show update destroy]
@@ -14,7 +16,7 @@ class TasksController < ApplicationController
     authorize @task
     if @task.save
       render status: :ok,
-       json: { notice: t('Successfully_created', entity: 'Task') }
+       json: { notice: t('successfully_created', entity: 'Task') }
     else
       errors = @task.errors.full_messages.to_sentence
       render status: :unprocessable_entity, json: { errors: errors  }
@@ -25,9 +27,11 @@ class TasksController < ApplicationController
 
   def show
     authorize @task
+    comments = @task.comments.order('created_at DESC')
     task_creator = User.find(@task.creator_id).name
   render status: :ok, json: { task: @task,
                               assigned_user: @task.user,
+                              comments: commments,
                               task_creator: task_creator }
   end
 
@@ -40,7 +44,7 @@ class TasksController < ApplicationController
     end
 
     if @task.update(task_params.except(:authorize_owner))
-      render status: :ok, json: {}
+      render status: :ok, json: {notice: 'Task successfully updated'}
     else
       render status: :unprocessable_entity,
              json: { errors: @task.errors.full_messages.to_sentence }
@@ -50,7 +54,7 @@ class TasksController < ApplicationController
   def destroy
     authorize @task
     if @task.destroy
-      render status: :ok, json: {}
+      render status: :ok, json: {notice: 'Task successfully deleted'}
     else
       render status: :unprocessable_entity, 
               json: { errors: @task.errors.full_messages }

@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   #except used because except new and edit all other actions need to be run
   resources :users, only: %i[create index]
   resource :sessions, only: %i[create destroy]
+  resources :comments, only: :create
   root "home#index"
   get '*path', to: 'home#index', via: :all
 end
