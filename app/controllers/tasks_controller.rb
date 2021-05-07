@@ -7,7 +7,9 @@ class TasksController < ApplicationController
 
   def index
     tasks = policy_scope(Task)
-    render status: :ok, json: { tasks: tasks }
+    pending_tasks = tasks.pending
+    completed_tasks = tasks.completed
+    render status: :ok, json: { tasks: { pending: pending_tasks, completed: completed_tasks } }
     #tasks = policy_scope(Task) works like @tasks = TaskPolicy::Scope.new(current_user, Task).resolve
   end
 
@@ -64,7 +66,8 @@ class TasksController < ApplicationController
   private
   
   def task_params
-    params.require(:task).permit(:title, :user_id, :authorize_owner)
+    params.require(:task).permit(:title, :user_id, :progress)
+       #:authorize_owner, 
   end
     #not marking user_id safe but whitelisting user_id attribute
 
