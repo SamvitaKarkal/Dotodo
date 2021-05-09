@@ -1,16 +1,33 @@
 class TasksController < ApplicationController
+  after_action :verify_authorized, except: :index
+  after_action :verify_policy_scoped, only: :index
+  before_action :authenticate_user_using_x_auth_token
+  #, except: [:new, :edit]
   before_action :load_task, only: %i[show update destroy]
 
   def index
-    tasks = Task.all
-    render status: :ok, json: { tasks: tasks }
+    tasks = policy_scope(Task)
+    # pending_tasks = tasks.pending
+    # completed_tasks = tasks.completed
+    render status: :ok, json: { 
+      tasks: {
+        pending: tasks.organize(:pending).as_json(include: {
+          user: {
+            only: [:name, :id]
+          }
+        }),
+        completed: tasks.organize(:completed)
+      }
+    }
+    #tasks = policy_scope(Task) works like @tasks = TaskPolicy::Scope.new(current_user, Task).resolve
   end
 
   def create
-    @task = Task.new(task_params)
-    # .merge(creator_id: @current_user.id))
+    @task = Task.new(task_params.merge(creator_id: @current_user.id))
+    authorize @task
     if @task.save
-      render status: :ok, json: { notice: t('Successfully created', entity: 'Task') }
+      render status: :ok,
+       json: { notice: t('successfully_created', entity: 'Task') }
     else
       errors = @task.errors.full_messages.to_sentence
       render status: :unprocessable_entity, json: { errors: errors  }
@@ -20,40 +37,53 @@ class TasksController < ApplicationController
   end
 
   def show
-    # task_creator = User.find(@task.creator_id).name
+    authorize @task
+    comments = @task.comments.order('created_at DESC')
+    task_creator = User.find(@task.creator_id).name
   render status: :ok, json: { task: @task,
-                              assigned_user: @task.user}
-                              # task_creator: task_creator }
+                              assigned_user: @task.user,
+                              task_creator: task_creator,
+                              comments: comments
+                            }
   end
 
   def update
-    if @task.update(task_params)
-      render status: :ok, json: { notice: 'Successfully updated task.' }
+    authorize @task
+    is_not_owner = @task.creator_id != current_user.id
+
+    if task_params[:authorize_owner] && is_not_owner
+      render status: :forbidden, json: { error: t('authorization.denied') }
+    end
+
+    if @task.update(task_params.except(:authorize_owner))
+      render status: :ok, json: {notice: 'Task successfully updated'}
     else
-      render status: :unprocessable_entity, json: { errors: @task.errors.full_messages }
+      render status: :unprocessable_entity,
+             json: { errors: @task.errors.full_messages.to_sentence }
     end
   end
 
   def destroy
+    authorize @task
     if @task.destroy
-      render status: :ok, json: { notice: 'Successfully deleted task.' }
+      render status: :ok, json: {notice: 'Task successfully deleted'}
     else
-      render status: :unprocessable_entity, json: { errors: 
-      @task.errors.full_messages }
+      render status: :unprocessable_entity, 
+              json: { errors: @task.errors.full_messages }
     end
   end
 
   private
   
   def task_params
-    params.require(:task).permit(:title, :user_id)
-    #not marking user_id safe but whitelisting user_id attribute
+    params.require(:task).permit(:title, :user_id, :authorize_owner, :progress, :status) 
   end
+    #not marking user_id safe but whitelisting user_id attribute
 
   def load_task
     @task = Task.find_by_slug!(params[:slug])
-    rescue ActiveRecord::RecordNotFound => errors
-      render json: {errors: errors}
+  rescue ActiveRecord::RecordNotFound => e
+    render json: { errors: e }, status: :not_found
   end
   
 end
