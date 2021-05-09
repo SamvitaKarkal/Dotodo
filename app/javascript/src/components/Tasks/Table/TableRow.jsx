@@ -36,8 +36,8 @@ const TableRow = ({
               "px-6 py-4 text-sm font-medium leading-5 whitespace-no-wrap text-bb-purple",
               {
                 "cursor-pointer": !isCompleted,
-                "text-opacity-50": isCompleted,
-              }
+              },
+              { "text-opacity-50": isCompleted }
             )}
             onClick={() => !isCompleted && showTask(rowData.slug)}
           >

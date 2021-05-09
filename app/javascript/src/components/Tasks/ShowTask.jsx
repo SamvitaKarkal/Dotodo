@@ -7,7 +7,7 @@ import Container from "components/Container";
 import PageLoader from "components/PageLoader";
 import Comments from "components/Comments";
 // import Toastr from "components/Common/Toastr";
-import { getFromLocalStorage } from "helpers/storage";
+//import { getFromLocalStorage } from "helpers/storage";
 
 const ShowTask = () => {
   const { slug } = useParams();
@@ -25,7 +25,6 @@ const ShowTask = () => {
   const destroyTask = async () => {
     try {
       await tasksApi.destroy(taskDetails.slug);
-      // Toastr.success("Successfully deleted task.");
     } catch (error) {
       logger.error(error);
     } finally {

@@ -30,15 +30,6 @@ const Dashboard = ({ history }) => {
     }
   };
 
-  const destroyTask = async slug => {
-    try {
-      await tasksApi.destroy(slug);
-      await fetchTasks();
-    } catch (error) {
-      logger.error(error);
-    }
-  };
-
   const handleProgressToggle = async ({ slug, progress }) => {
     try {
       await tasksApi.update({ slug, payload: { task: { progress } } });
@@ -50,9 +41,22 @@ const Dashboard = ({ history }) => {
     }
   };
 
+  const destroyTask = async slug => {
+    try {
+      await tasksApi.destroy(slug);
+      await fetchTasks();
+    } catch (error) {
+      logger.error(error);
+    }
+  };
+
   const showTask = slug => {
     history.push(`/tasks/${slug}/show`);
   };
+
+  // const updateTask = slug => {
+  //   history.push(`/tasks/${slug}/edit`);
+  // };
 
   const starTask = async (slug, status) => {
     try {
@@ -66,10 +70,6 @@ const Dashboard = ({ history }) => {
       logger.error(error);
     }
   };
-
-  // const updateTask = slug => {
-  //   history.push(`/tasks/${slug}/edit`);
-  // };
 
   useEffect(() => {
     fetchTasks();

@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { initializeLogger } from "common/logger";
-import { registerIntercepts, setAuthHeaders } from "apis/axios";
 import { Route, Switch, BrowserRouter as Router } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import { either, isEmpty, isNil } from "ramda";
@@ -13,6 +11,8 @@ import Login from "components/Authentication/Login";
 import Signup from "components/Authentication/Signup";
 import PrivateRoute from "components/Common/PrivateRoute";
 import { getFromLocalStorage } from "helpers/storage";
+import { initializeLogger } from "common/logger";
+import { registerIntercepts, setAuthHeaders } from "apis/axios";
 import PageLoader from "components/PageLoader";
 
 const App = () => {

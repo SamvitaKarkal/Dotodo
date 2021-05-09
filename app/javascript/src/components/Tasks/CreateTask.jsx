@@ -17,7 +17,7 @@ const CreateTask = ({ history }) => {
     try {
       await tasksApi.create({ task: { title, user_id: userId } });
       setLoading(false);
-      history.push("/");
+      history.push("/dashboard");
     } catch (error) {
       setLoading(false);
       logger.error(error);

@@ -42,8 +42,9 @@ class TasksController < ApplicationController
     task_creator = User.find(@task.creator_id).name
   render status: :ok, json: { task: @task,
                               assigned_user: @task.user,
-                              comments: commments,
-                              task_creator: task_creator }
+                              task_creator: task_creator,
+                              comments: comments
+                            }
   end
 
   def update
@@ -75,8 +76,7 @@ class TasksController < ApplicationController
   private
   
   def task_params
-    params.require(:task).permit(:title, :user_id, :progress, :status)
-       #:authorize_owner, 
+    params.require(:task).permit(:title, :user_id, :authorize_owner, :progress, :status) 
   end
     #not marking user_id safe but whitelisting user_id attribute
 

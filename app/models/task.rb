@@ -1,9 +1,9 @@
 class Task < ApplicationRecord
 
   # validates :title, presence: true
-  belongs_to :user
   enum progress: { pending: 0, completed: 1 }
   enum status: { unstarred: 0, starred: 1 }
+  belongs_to :user
   has_many :comments, dependent: :destroy
   validates :title, presence: true, length: {maximum: 50 }
   validates :slug, uniqueness: true
@@ -38,7 +38,6 @@ class Task < ApplicationRecord
     end
     #errors is instance of ActiveModel::Errors error related functionalities.
   end
-
 
     # def test_user_should_not_be_valid_without_name
     #   @user.name = ''

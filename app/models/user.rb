@@ -8,9 +8,9 @@ class User < ApplicationRecord
     #dependent : :destroy destroys all tasks assigned to user if user destroyed
     
     validates :name, presence: true, length: { maximum: 35 }
-    validates :email, presence: true,
-                      uniqueness: true,
-                      length: { maximum: 50},
+    validates :email, presence: true, 
+                      uniqueness: { case_sensitive: false },
+                      length: { maximum: 255},
                       format: { with: VALID_EMAIL_REGEX }
 
     validates :password, presence: true, confirmation: true, length: { minimum: 6 }

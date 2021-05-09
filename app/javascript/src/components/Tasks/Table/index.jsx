@@ -6,8 +6,8 @@ const Table = ({
   type = "pending",
   data,
   destroyTask,
-  showTask,
   handleProgressToggle,
+  showTask,
   starTask,
   // updateTask,
 }) => {
