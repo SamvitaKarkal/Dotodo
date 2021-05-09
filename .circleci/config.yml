@@ -35,7 +35,7 @@ jobs:
       # Setup database
 
       - run: cp config/database.yml.ci config/database.yml
-      - run: bundle exec rails db:create db:schema:load --trace
+      - run: rails db:create db:schema:load --trace
 
       # Yarn install
       
@@ -57,13 +57,13 @@ jobs:
       # Generate assets
 
 #       - run: bin/webpack
-      - run: bundle exec rails webpacker:compile
+      - run: rails webpacker:compile
 
       # Unit tests
 
       - run:
           shell: /bin/bash
-          command: bundle exec rake test --trace
+          command: rake test --trace
 workflows:
   version: 2
   commit:
