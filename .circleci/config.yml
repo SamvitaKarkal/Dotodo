@@ -35,7 +35,7 @@ jobs:
       # Setup database
 
       - run: cp config/database.yml.ci config/database.yml
-      - run: rails db:create db:schema:load --trace
+      #- run: rails db:create db:schema:load --trace
 
       # Yarn install
       
