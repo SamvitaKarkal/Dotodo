@@ -11,6 +11,9 @@
 /db/*.sqlite3
 /db/*.sqlite3-journal
 
+#ignore text fixtures
+/test/fixtures
+
 # Ignore database.yml file
 /config/database.yml
 

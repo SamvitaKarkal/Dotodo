@@ -66,7 +66,7 @@ class TaskTest < ActiveSupport::TestCase
   #   assert_equal 'test-task-2', second_task.slug
   # end
 
-    # #Test to check that slug is immutable
+  #   #Test to check that slug is immutable
   # def test_error_raised_for_duplicate_slug
   #   test_task = Task.create!(title: 'test task', user: @user)
   #   another_test_task = Task.create!(title: 'another test task', user: @user)
