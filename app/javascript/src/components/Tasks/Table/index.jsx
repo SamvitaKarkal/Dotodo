@@ -8,7 +8,7 @@ const Table = ({
   destroyTask,
   handleProgressToggle,
   showTask,
-  starTask,
+  starTask
   // updateTask,
 }) => {
   return (

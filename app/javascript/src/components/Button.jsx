@@ -22,7 +22,7 @@ Button.propTypes = {
   type: PropTypes.string,
   buttonText: PropTypes.string,
   loading: PropTypes.bool,
-  onClick: PropTypes.func,
+  onClick: PropTypes.func
 };
 
 export default Button;

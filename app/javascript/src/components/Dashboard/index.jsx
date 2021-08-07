@@ -63,7 +63,7 @@ const Dashboard = ({ history }) => {
       const toggledStatus = status === "starred" ? "unstarred" : "starred";
       await tasksApi.update({
         slug,
-        payload: { task: { status: toggledStatus } },
+        payload: { task: { status: toggledStatus } }
       });
       await fetchTasks();
     } catch (error) {
@@ -114,14 +114,14 @@ const Dashboard = ({ history }) => {
       )}
     </Container>
 
-  // <Container>
-  //   <ListTasks
-  //     data={tasks}
-  //     destroyTask={destroyTask}
-  //     updateTask={updateTask}
-  //     showTask={showTask}
-  //   />
-  // </Container>
+    // <Container>
+    //   <ListTasks
+    //     data={tasks}
+    //     destroyTask={destroyTask}
+    //     updateTask={updateTask}
+    //     showTask={showTask}
+    //   />
+    // </Container>
   );
 };
 

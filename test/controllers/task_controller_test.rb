@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "test_helper"
 
 class TaskControllerTest < ActionDispatch::IntegrationTest
@@ -5,3 +7,4 @@ class TaskControllerTest < ActionDispatch::IntegrationTest
   #   assert true
   # end
 end
+

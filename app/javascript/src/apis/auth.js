@@ -7,7 +7,7 @@ const signup = payload => axios.post("/users", payload);
 const authApi = {
   login,
   logout,
-  signup,
+  signup
 };
 
 export default authApi;

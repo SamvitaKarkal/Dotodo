@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 class TaskPolicy
-    attr_reader :user, :task
-  
-    def initialize(user, task)
-      @user = user
-      @task = task
-    end
+  attr_reader :user, :task
+
+  def initialize(user, task)
+    @user = user
+    @task = task
+  end
 
   # The show policy check is invoked when we call `authorize @task`
   # from the show action of tasks controller.
@@ -47,5 +49,5 @@ class TaskPolicy
       scope.where(creator_id: user.id).or(scope.where(user_id: user.id))
     end
   end
-
 end
+

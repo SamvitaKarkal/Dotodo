@@ -11,15 +11,15 @@ const TaskForm = ({
   users,
   setUserId,
   loading,
-  handleSubmit,
+  handleSubmit
 }) => {
   const userOptions = users.map(user => ({
     value: user.id,
-    label: user.name,
+    label: user.name
   }));
   const defaultOption = {
     value: assignedUser?.id,
-    label: assignedUser?.name,
+    label: assignedUser?.name
   };
 
   return (

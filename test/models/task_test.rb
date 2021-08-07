@@ -1,7 +1,8 @@
+# frozen_string_literal: true
+
 require "test_helper"
 
 class TaskTest < ActiveSupport::TestCase
-
   # def setup
   #   @user = User.create(name: 'Sam Smith',
   #                        email: 'sam@example.com',
@@ -29,7 +30,7 @@ class TaskTest < ActiveSupport::TestCase
   # def test_value_created_at
   #   task = Task.new(title: "This is a test task", user: @user)
   #   assert_nil task.created_at
-  
+
   #   task.save!
   #   assert_not_nil task.created_at
   # end
@@ -61,7 +62,7 @@ class TaskTest < ActiveSupport::TestCase
   # def test_incremental_slug_generation_for_tasks_with_same_title
   #   first_task = Task.create!(title: 'test task', user: @user)
   #   second_task = Task.create!(title: 'test task', user: @user)
-  
+
   #   assert_equal 'test-task', first_task.slug
   #   assert_equal 'test-task-2', second_task.slug
   # end
@@ -70,12 +71,12 @@ class TaskTest < ActiveSupport::TestCase
   # def test_error_raised_for_duplicate_slug
   #   test_task = Task.create!(title: 'test task', user: @user)
   #   another_test_task = Task.create!(title: 'another test task', user: @user)
-  
+
   #   test_task_tile = test_task.title
   #   assert_raises ActiveRecord::RecordInvalid do
   #     another_test_task.update!(slug: test_task_title.parameterize)
   #   end
-  
+
   #   assert_match t('task.slug.immutable'),
   #                 another_test_task.errors.full_messages.to_sentence
   # end
@@ -83,13 +84,12 @@ class TaskTest < ActiveSupport::TestCase
   # def test_slug_to_be_reused_after_getting_deleted
   #   first_task = Task.create!(title: 'test task', user: @user)
   #   second_task = Task.create!(title: 'test task', user: @user)
-  
+
   #   second_task_slug = second_task.slug
   #   second_task.destroy
   #   new_task_with_same_title = Task.create!(title: 'test task', user: @user)
-  
+
   #   assert_equal second_task_slug, new_task_with_same_title.slug
   # end
-
 end
 

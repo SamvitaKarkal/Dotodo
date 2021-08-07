@@ -7,13 +7,15 @@ const Input = ({
   value,
   onChange,
   placeholder,
-  required = true,
+  required = true
 }) => {
   return (
     <div className="mt-6">
       {label && (
-        <label className="block text-sm font-medium
-              leading-5 text-bb-gray-700">
+        <label
+          className="block text-sm font-medium
+              leading-5 text-bb-gray-700"
+        >
           {label}
         </label>
       )}
@@ -41,7 +43,7 @@ Input.propTypes = {
   value: PropTypes.node,
   placeholder: PropTypes.string,
   onChange: PropTypes.func,
-  required: PropTypes.bool,
+  required: PropTypes.bool
 };
 
 export default Input;

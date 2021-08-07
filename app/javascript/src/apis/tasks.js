@@ -11,7 +11,7 @@ const tasksApi = {
   show,
   create,
   update,
-  destroy,
+  destroy
 };
 
 export default tasksApi;

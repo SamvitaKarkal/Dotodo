@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateUser < ActiveRecord::Migration[6.1]
   def change
     create_table :users do |t|
@@ -6,3 +8,4 @@ class CreateUser < ActiveRecord::Migration[6.1]
     end
   end
 end
+

@@ -3,7 +3,7 @@ import axios from "axios";
 const list = () => axios.get("/users");
 //get method to prepopulate select in TaskForm
 const usersApi = {
-  list,
+  list
 };
 
 export default usersApi;

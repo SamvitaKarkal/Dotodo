@@ -22,8 +22,8 @@ const EditTask = ({ history }) => {
       await tasksApi.update({
         slug,
         payload: {
-          task: { title, user_id: userId, authorize_owner: true },
-        },
+          task: { title, user_id: userId, authorize_owner: true }
+        }
       });
       // Toastr.success("Successfully updated task.");
       history.push("/");

@@ -37,7 +37,7 @@ FileUtils.chdir APP_ROOT do
 
   puts "\n== Setting up the app =="
   system! 'bundle exec rake setup'
-  
+
   puts '== Installing dependencies =='
   system! 'gem install bundler --conservative'
   system('bundle check') || system!('bundle install')
